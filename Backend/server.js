@@ -18,7 +18,7 @@ const BackblazeB2 = require('backblaze-b2');
 const app = express()
 app.use(express.json())
 app.use(cors({
-  origin: "https://localhost:8000"
+  origin: "http://localhost:3000"
 }));
 
 app.use(
@@ -79,6 +79,9 @@ passport.use(
             [gmail, givenName, id, 'google']
           );
         }
+        else{
+          done("fuckoff")
+        }
 
         done(null, profile);
       } catch (err) {
@@ -105,9 +108,7 @@ app.get('/auth/google',
 app.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
     // Redirect to the frontend after successful login
-    console.log("im logged in ")
-
-    // res.redirect('http://localhost:3000/dashboard');
+     res.redirect('http://localhost:3000/img');
   }
 );
 
@@ -227,6 +228,7 @@ app.post('/verify_otp', (req, res) => {
   if (storedOtpInfo.otp === parseInt(otp) && Date.now() < storedOtpInfo.expiresAt) {
     delete otpStore[gmail]; // OTP is valid, remove from store
     res.status(200).json({ message: 'OTP verified successfully' });
+    
   } else {
     res.status(400).json({ error: 'Invalid or expired OTP' });
   }
@@ -279,7 +281,7 @@ app.post("/login", async (req, res) => {
       const user = rows[0]
       const check = await bcrypt.compare(password, user.password);
       if (check) {
-        const token = jwt.sign(user.rollno, "thepass");
+        const token = jwt.sign(user.gmail, "thepass");
         res.status(200).json({ jwtToken: token })
       }
       else {

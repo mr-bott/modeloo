@@ -9,6 +9,8 @@ function App() {
     
       <Routes>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/img" element={<ImageUploader/>}/>
+        <Route path="/fuckedup" element={<Login/>}/>
 
       </Routes>
     </Router>
