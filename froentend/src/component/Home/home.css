@@ -1,0 +1,118 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.home-container {
+    display: flex;
+    min-height: 80vh;
+    padding: 20px;
+ 
+    background-color: #f3ffe3;
+}
+
+.quote-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+}
+
+.quote {
+    font-size: 2rem;
+    color:black;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.quotes_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+    padding: 20px;
+    background-color: #f3ffe3;
+}
+
+
+.author {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+.cycle-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.circle {
+    width: 300px;
+    height: 300px;
+    border: 2px solid #3498db;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 20s linear infinite;
+}
+
+.phase {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    transition: transform 0.3s ease;
+}
+
+.phase:hover {
+    transform: scale(1.1);
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        flex-direction: column;
+        width: 100vw;
+        margin-top: 3rem;
+        padding: 12px;
+    }
+    
+    .circle {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .phase {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .quote {
+        font-size: 1.5rem;
+        margin-bottom: 0px;
+    }
+    .quote-section{
+        padding: 0px 20px;
+    }
+    .quotes_container{
+        width: 100vw;
+        padding: 10px;
+    }
+}

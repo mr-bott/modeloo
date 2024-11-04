@@ -1,0 +1,96 @@
+/* subjects.css */
+.subjects-grid-container {
+    padding-top: 5rem; /* Maintain spacing below the header */
+    max-width: 100vw;
+    height: 80vh;
+    margin: 0 auto;
+    padding: 10px; /* Reduced padding for smaller screens */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #e6d5ff;
+    border:2px solid black;
+    border-radius:8px;
+}
+.search{
+height:100vh
+}
+.subjects-grid-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, 1fr); /* Ensure rows can grow */
+    gap: 10px; /* Reduced gap for better fit on smaller screens */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.quote_subjects{
+    font-size: 1.7rem;
+    color:black;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+.subjects-grid-item {
+    background-color: white;
+    border-radius:8px;
+    padding: 10px; /* Reduced padding for smaller screens */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s ease;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.subjects-grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.subjects-grid-heading {
+    margin: 0 0 5px 0; /* Reduced margin for better fit */
+    font-size: 20px; /* Smaller font size for mobile */
+    color:black;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.subjects-grid-paragraph {
+    margin: 0;
+    color: #666;
+    line-height: 1.4; /* Slightly tighter line height */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1024px) {
+    .subjects-grid-list {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px; /* Slightly increased gap for medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .subjects-grid-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px; /* Maintained smaller gap for small screens */
+    }
+    .subjects-grid-container{
+        margin: 0px;
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .subjects-grid-list {
+        grid-template-columns: 1fr; /* Single column for mobile */
+        gap: 10px; /* Maintained smaller gap */
+    }
+    
+    .subjects-grid-item {
+        padding: 15px; /* Adjust padding for mobile */
+    }
+    .subjects-grid-container{
+        margin: 0px;
+        width: 100vw;
+    }
+}

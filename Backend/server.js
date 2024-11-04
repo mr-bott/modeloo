@@ -1,24 +1,201 @@
-const mysql = require('mysql2')
-const express = require('express')
-const cors = require("cors")
-const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken")
-const nodemailer = require('nodemailer')
-const crypto = require('crypto')
-require('dotenv').config()
+// const mysql = require('mysql2')
+// const express = require('express')
+// const cors = require("cors")
+// const bcrypt = require("bcrypt")
+// const jwt = require("jsonwebtoken")
+// const nodemailer = require('nodemailer')
+// const crypto = require('crypto')
+// require('dotenv').config()
+// const passport = require('passport');
+// const GoogleStrategy = require('passport-google-oauth20').Strategy;
+// const session = require('express-session');
+
+// const multer = require('multer');
+// const BackblazeB2 = require('backblaze-b2');
+
+
+
+// const app = express()
+// app.use(express.json())
+
+// app.use(cors({
+//   origin: 'http://localhost:3000', // Your React app URL
+//   credentials: true, // Allow credentials (cookies, etc.)
+// }));
+
+// app.use(
+//   session({
+//     secret: '06/9/2024',
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+
+// // Connection pool to the database
+// const pool = mysql.createPool({
+//   host: process.env.HOST,
+//   user: process.env.USER,
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE,
+//   waitForConnections: true,
+//   connectionLimit: 10,
+//   queueLimit: 0
+// }).promise();
+
+// // Testing the connection and start the server
+// pool.getConnection()
+//   .then((connection) => {
+//     connection.release();
+//     const PORT = process.env.PORT || 3000;
+//     app.listen(PORT, () => {
+//       console.log(`Server is running on port ${PORT}`);
+//     });
+//   })
+//   .catch((err) => {
+//     console.error('Error connecting to MySQL:', err.message);
+//   });
+
+// passport.use(
+//   new GoogleStrategy(
+//     {
+//       clientID: process.env.GOOGLE_CLIENT_ID,
+//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+//       callbackURL: 'http://localhost:8000/auth/google/callback',
+//     },
+//     async (accessToken, refreshToken, profile, done) => {
+//       try {
+//         const { id, emails } = profile;
+//         const { givenName } = profile.name
+//         const gmail = emails[0].value;
+
+//         // Check if the user already exists
+//         const [rows] = await pool.query('SELECT * FROM users WHERE gmail = ?', [gmail]);
+
+//         if (rows.length === 0) {
+//           // Insert new user into the database
+//           await pool.query(
+//             'INSERT INTO users (gmail, name, google_sub, signup_method) VALUES (?, ?, ?,?)',
+//             [gmail, givenName, id, 'google']
+//           );
+//         }
+//         done(null, profile);
+//       } catch (err) {
+//         done(err, null);
+//       }
+//     }
+//   )
+// );
+
+// passport.serializeUser((user, done) => {
+//   done(null, user);
+// });
+
+// passport.deserializeUser((obj, done) => {
+//   done(null, obj);
+// });
+
+// app.get('/auth/google', passport.authenticate('google', {
+//   scope: ['profile', 'email'], // Adjust scopes as needed
+// }));
+
+// app.get('/auth/google/callback', 
+//   passport.authenticate('google', { failureRedirect: '/login' }),
+//   (req, res) => {
+//     // Generate the JWT token here
+//     const token = jwt.sign({ email: req.user.emails[0].value}, "thepass");
+//     res.redirect(`http://localhost:3000/?token=${token}`);
+//   }
+// );
+
+// app.get('/logout', (req, res) => {
+//   req.logout((err) => {
+//     if (err) {
+//       return res.status(500).json({ error: 'Logout failed' });
+//     }
+//     //res.redirect('/login');
+//     res.status(200).json({ error: "Logout success" })
+//   });
+// });
+
+// // to -------
+
+// const b2 = new BackblazeB2({
+//   applicationKeyId: process.env.B2_APPLICATION_KEY_ID,
+//   applicationKey: process.env.B2_APPLICATION_KEY,
+// });
+// // Multer setup for file uploads
+// const storage = multer.diskStorage({
+//   destination: 'uploads/', // Temporary storage
+//   filename: (req, file, cb) => {
+//     const uniqueName = `${Date.now()}-${file.originalname}`;
+//     cb(null, uniqueName);
+//   },
+// });
+// const upload = multer({ storage });
+
+
+// // Upload image to Backblaze B2 and store URL in MySQL
+// async function uploadToB2(filename, filepath) {
+//   await b2.authorize();
+//   const { data } = await b2.getUploadUrl({ bucketId: process.env.B2_BUCKET_ID });
+
+//   const fileData = require('fs').readFileSync(filepath);
+//   const uploadResponse = await b2.uploadFile({
+//     uploadUrl: data.uploadUrl,
+//     uploadAuthToken: data.authorizationToken,
+//     fileName: filename,
+//     data: fileData,
+//   });
+
+//   return `${process.env.B2_BUCKET_URL}/${filename}`;
+// }
+
+// // Route to upload image and store URL in MySQL
+// app.post('/uploadimage', upload.single('image'), async (req, res) => {
+//   const { filename, path: filepath } = req.file;
+
+//   try {
+//     const imageUrl = await uploadToB2(filename, filepath);
+
+//     // Save the image URL in the database
+//     await pool.query('INSERT INTO images (filename, url) VALUES (?, ?)', [
+//       filename,
+//       imageUrl,
+//     ]);
+//     console.log(imageUrl)
+
+//     res.status(200).json({ message: 'Image uploaded successfully', url: imageUrl });
+//   } catch (error) {
+//     console.error('Upload error:', error);
+//     res.status(500).json({ error: 'Image upload failed' });
+//   }
+// });
+
+//no chnage 
+
+const mysql = require('mysql2');
+const express = require('express');
+const cors = require('cors');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
+require('dotenv').config();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const session = require('express-session');
-
 const multer = require('multer');
-const BackblazeB2 = require('backblaze-b2');
+const cloudinary = require('cloudinary').v2;
 
+const app = express();
+app.use(express.json());
 
-
-const app = express()
-app.use(express.json())
 app.use(cors({
-  origin: "http://localhost:3000"
+  origin: process.env.FroentendURL, // Your React app URL
+  credentials: true, // Allow credentials (cookies, etc.)
 }));
 
 app.use(
@@ -31,6 +208,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Connection pool to the database
 const pool = mysql.createPool({
@@ -43,7 +226,7 @@ const pool = mysql.createPool({
   queueLimit: 0
 }).promise();
 
-// Testing the connection and start the server
+// Testing the connection and starting the server
 pool.getConnection()
   .then((connection) => {
     connection.release();
@@ -61,12 +244,12 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: 'http://localhost:8000/auth/google/callback',
+      callbackURL: process.env.CALL_BACK,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
         const { id, emails } = profile;
-        const { givenName } = profile.name
+        const { givenName } = profile.name;
         const gmail = emails[0].value;
 
         // Check if the user already exists
@@ -75,14 +258,10 @@ passport.use(
         if (rows.length === 0) {
           // Insert new user into the database
           await pool.query(
-            'INSERT INTO users (gmail, name, google_sub, signup_method) VALUES (?, ?, ?,?)',
+            'INSERT INTO users (gmail, name, google_sub, signup_method) VALUES (?, ?, ?, ?)',
             [gmail, givenName, id, 'google']
           );
         }
-        else{
-          done("fuckoff")
-        }
-
         done(null, profile);
       } catch (err) {
         done(err, null);
@@ -99,16 +278,17 @@ passport.deserializeUser((obj, done) => {
   done(null, obj);
 });
 
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email'], // Adjust scopes as needed
+}));
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-
-);
-
-app.get('/auth/google/callback',passport.authenticate('google', { failureRedirect: '/login' }),
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
-    // Redirect to the frontend after successful login
-     res.redirect('http://localhost:3000/img');
+    // Generate the JWT token here
+    const token = jwt.sign({ email: req.user.emails[0].value }, 'thepass');
+    const url=process.env.FroentendURL
+    res.redirect(`${url}/?token=${token}`);
   }
 );
 
@@ -117,17 +297,10 @@ app.get('/logout', (req, res) => {
     if (err) {
       return res.status(500).json({ error: 'Logout failed' });
     }
-    //res.redirect('/login');
-    res.status(200).json({ error: "Logout success" })
+    res.status(200).json({ error: 'Logout success' });
   });
 });
 
-// to -------
-
-const b2 = new BackblazeB2({
-  applicationKeyId: process.env.B2_APPLICATION_KEY_ID,
-  applicationKey: process.env.B2_APPLICATION_KEY,
-});
 // Multer setup for file uploads
 const storage = multer.diskStorage({
   destination: 'uploads/', // Temporary storage
@@ -138,37 +311,26 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
-// Upload image to Backblaze B2 and store URL in MySQL
-async function uploadToB2(filename, filepath) {
-  await b2.authorize();
-  const { data } = await b2.getUploadUrl({ bucketId: process.env.B2_BUCKET_ID });
-
-  const fileData = require('fs').readFileSync(filepath);
-  const uploadResponse = await b2.uploadFile({
-    uploadUrl: data.uploadUrl,
-    uploadAuthToken: data.authorizationToken,
-    fileName: filename,
-    data: fileData,
+// Upload image to Cloudinary and store URL in MySQL
+async function uploadToCloudinary(filepath) {
+  const result = await cloudinary.uploader.upload(filepath, {
+    folder: 'images', // Optional: specify folder in Cloudinary
   });
-
-  return `${process.env.B2_BUCKET_URL}/${filename}`;
+  return result.secure_url;
 }
 
 // Route to upload image and store URL in MySQL
-app.post('/upload', upload.single('image'), async (req, res) => {
-  const { filename, path: filepath } = req.file;
+app.post('/uploadimage', upload.single('image'), async (req, res) => {
+  const { path: filepath } = req.file;
 
   try {
-    const imageUrl = await uploadToB2(filename, filepath);
+    const imageUrl = await uploadToCloudinary(filepath);
+    const { type,rollNo,subCode,subName,ExamDate}=req.body
 
-    // // Save the image URL in the database
-    // await pool.query('INSERT INTO images (filename, url) VALUES (?, ?)', [
-    //   filename,
-    //   imageUrl,
-    // ]);
-    console.log(imageUrl)
-
+    // Save the image URL in the database
+    await pool.query('INSERT INTO subject (sub_code,sub_name, upload_by,img,Exam_date,Type) VALUES (?,?,?,?,?, ?)', [
+      subCode,subName,rollNo,imageUrl,ExamDate,type]);
+  
     res.status(200).json({ message: 'Image uploaded successfully', url: imageUrl });
   } catch (error) {
     console.error('Upload error:', error);
@@ -176,6 +338,11 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   }
 });
 
+
+
+
+
+// no change 
 
 
 let otpStore = {}; // In-memory store for OTPs 
@@ -218,7 +385,7 @@ app.post('/send_otp', async (req, res) => {
 // Route to verify OTP
 app.post('/verify_otp', (req, res) => {
   const { gmail, otp } = req.body;
-  // console.log(otpStore)
+
   const storedOtpInfo = otpStore[gmail];
 
   if (!storedOtpInfo) {
@@ -260,14 +427,16 @@ app.post("/signup", async (req, res) => {
 app.put("/update_details", async (req, res) => {
 
   try {
-    const { name, branch, year, sem, rollno, gmail } = req.body
+    const {formData,gmail}=req.body
+    const { name, branch, year, sem, rollno,regulation } = formData
     const [rows] = await pool.query(
-      `UPDATE users SET name = ?, branch = ?, year = ?, sem = ?, rollno = ? WHERE gmail = ?`,
-      [name, branch, year, sem, rollno, gmail]
+      `UPDATE users SET name = ?, branch = ?, year = ?, sem = ?, rollno = ? regulation=? WHERE gmail = ?`,
+      [name, branch, year, sem, rollno,regulation, gmail]
     )
     res.status(201).json({ error: "Successfully Updated" })
   }
   catch (err) {
+    
     res.status(500).json({ error: err.message })
   }
 
@@ -340,7 +509,7 @@ app.post("/forgot_password", async (req, res) => {
 })
 
 //to get all details about a user
-app.get("/users/:id", checkpoint, async (req, res) => {
+app.get("/users/:id", async (req, res) => {
   try {
     const { id } = req.params
     const [rows] = await pool.query('SELECT * FROM users where id=?', [id]);
@@ -350,9 +519,20 @@ app.get("/users/:id", checkpoint, async (req, res) => {
   }
 })
 
-app.get("/myuploads", async (req, res) => {
+app.get("/getdetails/:gmail", async (req, res) => {
   try {
-    const { rollno } = req.body
+    const { gmail } = req.params
+    const [rows] = await pool.query('SELECT * FROM users where gmail=?', [gmail]);
+    res.json({ details: rows });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
+
+app.get("/myuploads/:rollno", async (req, res) => {
+  try {
+    const { rollno } = req.params
     const [rows] = await pool.query(`select * from subject where upload_by=?`, [rollno])
     res.status(200).json({ rows })
 
@@ -364,9 +544,9 @@ app.get("/myuploads", async (req, res) => {
 
 // -------Regualtion and branch table by year--------
 // to get subjects by branch,year and regulation wise 
-app.get("/branch", checkpoint, async (req, res) => {
+app.get("/branch",async (req, res) => {
   try {
-    const { regulation, year, branch } = req.body
+    const { regulation, year, branch } = req.query
     const table = regulation + year
     const [rows] = await pool.query(`select * from ${table} where branch=?`, [branch])
     if (rows.length > 0) {
@@ -378,7 +558,7 @@ app.get("/branch", checkpoint, async (req, res) => {
 
   }
   catch (err) {
-    //console.log(err.message)
+    console.log(err.message)
     res.status(500).json({ error: "Internal server error" })
   }
 })
@@ -386,9 +566,9 @@ app.get("/branch", checkpoint, async (req, res) => {
 //---------Subjects Table-----------
 // To get images by search
 
-app.get("/search",async(req,res)=>{
+app.get("/search/:details",async(req,res)=>{
   try{
-    const{details}=req.body
+    const{details}=req.params
      const pattern=`%${details}%`;
     const [rows]=await pool.query(`select * from subject where sub_code like ? or sub_name like ?`, [pattern,pattern])
       if(rows.length>0){
@@ -404,30 +584,71 @@ app.get("/search",async(req,res)=>{
   }
 })
 
-// to get images relevent to user details 
-app.get("/relevent", async (req, res) => {
+app.get("/get_paper/:sub_code", async (req, res) => {
   try {
-    const { regulation, year, branch } = req.body; 
-    const table = regulation + year;
-    const [rows] = await pool.query(
-      `SELECT s.sub_code, s.sub_name, s.upload_by, COUNT(s.id) AS upload_count , s.upload_time
-       FROM ${table} r
-       INNER JOIN subject s ON r.sub_code = s.sub_code
-       WHERE r.branch = ?
-       GROUP BY s.sub_code, s.sub_name, s.upload_by ,s.upload_time`,
-      [branch] 
-    );
-    // Check if data exists
+    const sub_code = req.params.sub_code; // Get sub_code from request parameters
+    const [rows] = await pool.query(`SELECT * FROM subject WHERE sub_code = ?`, [sub_code]);
+    
     if (rows.length > 0) {
-      res.status(200).json({ subjects: rows });
+      res.status(200).json(rows); // Return the paper data
     } else {
-      res.status(404).json({ error: "No subjects found for the given branch" });
+      res.status(200).json({ error: "Paper not found" }); // Handle case where no paper is found
     }
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.log(err.message); // Log the error message
+    res.status(500).json({ error: "Internal server error" }); // Handle internal server error
   }
 });
+
+// to get images relevent to user details 
+// app.get("/relevent", async (req, res) => {
+//   try {
+//     const { regulation, year, branch } = req.body; 
+//     const table = regulation + year;
+//     const [rows] = await pool.query(
+//       `SELECT s.sub_code, s.sub_name, s.upload_by, COUNT(s.id) AS upload_count , s.upload_time
+//        FROM ${table} r
+//        INNER JOIN subject s ON r.sub_code = s.sub_code
+//        WHERE r.branch = ?
+//        GROUP BY s.sub_code, s.sub_name, s.upload_by ,s.upload_time`,
+//       [branch] 
+//     );
+//     // Check if data exists
+//     if (rows.length > 0) {
+//       res.status(200).json({ subjects: rows });
+//     } else {
+//       res.status(404).json({ error: "No subjects found for the given branch" });
+//     }
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// });
+app.get("/relevent", async (req, res) => {
+  try {
+      const { regulation, year, branch } = req.query; 
+
+      const table = regulation + year; // Combine regulation and year to form the table name
+      const [rows] = await pool.query(
+             `SELECT s.sub_code, s.sub_name, s.upload_by, COUNT(s.id) AS upload_count , s.upload_time
+              FROM ${table} r
+              INNER JOIN subject s ON r.sub_code = s.sub_code
+               WHERE r.branch = ?
+               GROUP BY s.sub_code, s.sub_name, s.upload_by ,s.upload_time`,
+              [branch] 
+            );
+      // Check if data exists
+      if (rows.length > 0) {
+          res.status(200).json({ subjects: rows });
+      } else {
+          res.status(404).json({ error: "No subjects found for the given branch" });
+      }
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
   //  to get the top 20 most recent uploads 
 app.get("/recent_uploads/:count", async (req, res) => {

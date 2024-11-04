@@ -1,0 +1,53 @@
+/* PortraitImageCard.css */
+
+.portraitImageCard-container {
+ 
+    width: 100%;
+    max-width: 500px; /* Limiting width for portrait layout */
+    margin: auto; 
+    margin-top:4.5rem;
+    position: relative;
+    background-color: #d5e0ff;
+    padding-bottom:1.5rem;
+  }
+  
+  .portraitImageCard-imageContainer {
+    width: 100%;
+  
+  }
+  
+  .portraitImageCard-image {
+    width: 100%;
+   
+  }
+  .potrait_row{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+    width:50%;
+  }
+  
+  .portraitImageCard-content {
+    padding: 20px;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    width:100%;
+  }
+  
+  .portraitImageCard-title {
+    font-size: 21px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .portraitImageCard-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    font-weight: bold;
+  }
+  

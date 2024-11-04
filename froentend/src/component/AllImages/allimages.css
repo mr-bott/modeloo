@@ -1,0 +1,107 @@
+/* AllImages Section */
+.all-images-section {
+    margin-top: 4.5rem;
+    background-color: #d5c6e0;
+    min-height:70vh;
+
+}
+
+.all-images-container {
+    width: 100%;
+}
+.section-title {
+    font-size: 2rem;
+    color:black;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-weight: bold;
+    text-align: center;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    color:black;
+    font-weight: bold;
+   
+}
+
+.image-card {
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.image-card-img {
+    margin: 0.5rem;
+    width:90%;
+    height: auto;
+    display: block;
+}
+
+.image-card-title {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.project-category-title {
+    text-align: center;
+    font-size: 1.5rem;
+     margin-top: .2rem; 
+    font-weight: bold;
+}
+
+/* Custom Carousel Arrows */
+.custom-prev,
+.custom-next {
+    border: none;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+}
+
+
+.custom-prev {
+    left: 25px;
+    position: absolute;
+    top:6.7rem;
+}
+
+.custom-next {
+    right: 25px;
+    top:7rem;
+    position: absolute;
+   
+}
+
+/* Responsive Slick Dots */
+.slick-dots.slick-thumb {
+    display: flex;
+    justify-content: center;
+}
+
+.slick-dots li {
+    margin: 0 5px;
+}
+
+.slick-dots li button {
+    border: 1px solid #000;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.slick-dots li.slick-active button {
+    background-color: #000;
+}
+
+@media screen and (max-width:768px){
+    .all-images-section{
+        padding:1.4rem;
+        width: 100vw;
+    }
+}

@@ -221,6 +221,10 @@
     color: var(--font-color);
     cursor: pointer;
   } 
+  .google_style{
+    text-decoration: none;
+    color:black;
+  }
   
 .loader {
     height: 27px;

@@ -1,0 +1,158 @@
+.branch-form-container {
+    width: 98.70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color:#E6E6FA;
+    height:60vh;
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  .branch-upload-form {
+     background:#d5e0ff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+   margin-bottom:1rem;
+  }
+  
+  .branch-upload-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  .branch-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .branch-form-group label {
+    display: block;
+    margin-bottom:1rem;
+    color:black;
+    font-weight:bld;
+  }
+  
+  .branch-form-group select,
+  .branch-form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+  }
+  
+  .branch-form-group select {
+    cursor: pointer;
+  }
+  
+  .branch-form-group input[type="file"] {
+    padding: 8px;
+    border: 1px dashed #ddd;
+    background-color: #f8f9fa;
+  }
+  
+  .branch-form-group select:focus,
+  .branch-form-group input:focus {
+    outline: none;
+    border-color: green;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+  }
+  
+  .branch-submit-btn {
+    width: 20%;
+    padding: 12px;
+    background-color:black;
+    color:white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .branch-submit-btn:hover {
+    background-color:lightgreen;
+  }
+  
+  .branch-submit-btn:active {
+    transform: translateY(1px);
+  }
+  
+  /* Error states */
+  .branch-form-group select:invalid,
+  .branch-form-group input:invalid {
+    border-color:#4a90e2;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .branch-form-container {
+      padding: 10px;
+      width: 100vw;
+    }
+  
+    .branch-upload-form {
+      padding: 20px;
+    }
+  
+    .branch-form-group label {
+      font-size: 14px;
+    }
+  
+    .branch-form-group select,
+    .branch-form-group input {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .branch-submit-btn {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Custom select arrow */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    padding-right: 32px;
+  }
+  
+  /* Ensure layout on large screens */
+  @media screen and (min-width: 900px) {
+    .branch-form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .branch-upload-form {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+     margin-right: 10px;
+      gap: 20px;
+    }
+  
+    .branch-upload-row {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      width: 100%;
+    }
+  
+    .branch-upload-row .branch-form-group {
+      flex: 1;
+    }
+  }
+  
