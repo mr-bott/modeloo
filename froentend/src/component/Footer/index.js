@@ -1,5 +1,6 @@
 import React from 'react'
 import "./footer.css"
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const Footer = () => {
     return (
@@ -17,7 +18,10 @@ const Footer = () => {
                 </div>
 
                 <h1 class="awards_heading">
-                    Join with us ⟿</h1>
+
+                    <a href="mailto:muralikrishna8309@gmail.com" className='footer_connect'>
+                        Join with us ⟿    </a>
+                </h1>
             </div>
 
             <div class="details_container">
@@ -48,7 +52,11 @@ const Footer = () => {
                         Developers </p>
 
                     <p class="branding_footer_para_dark">
+                        <a href="https://muralikrishna-ten.vercel.app/" target='_blank' className='footer_connect'>
                         Murali Krishna Abbugondi
+                       
+                        <FaExternalLinkAlt className='icon_link' size={15}/>
+                        </a>
                     </p>
 
                     <p class="branding_footer_para_dark">
@@ -65,17 +73,31 @@ const Footer = () => {
 
                     <p class="branding_footer_para_dark">
 
-                        muralikrishna8309@gmail.com
+
+                        <a href="mailto:muralikrishna8309@gmail.com" className='footer_connect'>
+                            muralikrishna8309@gmail.com</a>
+
                         <br />
-                        LinkedIn
+
+
+                        <a href="https://www.linkedin.com/in/murali-krishna-abbugondi/" target="_blank" rel="noopener noreferrer" class="footer_connect">
+                            LinkedIn
+                        </a>
+
                         <br />
-                        Whats app
+
+
+                        <a href="https://wa.me/+918309791865" target="_blank" rel="noopener noreferrer" class="footer_connect">
+                            WhatsApp
+                        </a>
 
                     </p>
-                    <p class="branding_footer_para_dark">
+
+
+                    <a href="https://wa.me/+918309791865" target="_blank" rel="noopener noreferrer" class="footer_connect branding_footer_para_dark">
                         ⇢ Let's Talk!
+                    </a>
 
-                    </p>
                 </div>
 
             </div>

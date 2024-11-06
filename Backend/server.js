@@ -322,25 +322,37 @@ async function uploadToCloudinary(filepath) {
 // Route to upload image and store URL in MySQL
 app.post('/uploadimage', upload.single('image'), async (req, res) => {
   const { path: filepath } = req.file;
+  const { type, rollNo, subCode, subName, ExamDate } = req.body;
 
   try {
-    const imageUrl = await uploadToCloudinary(filepath);
-    const { type,rollNo,subCode,subName,ExamDate}=req.body
+    // Check if the subject with the same subCode and ExamDate already exists
+    const [rows] = await pool.query(
+      `SELECT * FROM subject WHERE sub_code = ? AND Exam_date = ?`,
+      [subCode, ExamDate]
+    );
 
-    // Save the image URL in the database
-    await pool.query('INSERT INTO subject (sub_code,sub_name, upload_by,img,Exam_date,Type) VALUES (?,?,?,?,?, ?)', [
-      subCode,subName,rollNo,imageUrl,ExamDate,type]);
-  
+    if (rows.length > 0) {
+      // If a row already exists, skip the upload
+      return res.status(409).json({
+        message: 'Record with the same subCode and ExamDate already exists, skipping upload',
+      });
+    }
+
+    // Upload the image to Cloudinary
+    const imageUrl = await uploadToCloudinary(filepath);
+
+    // Insert the new record with the uploaded image URL
+    await pool.query(
+      'INSERT INTO subject (sub_code, sub_name, upload_by, img, Exam_date, Type) VALUES (?, ?, ?, ?, ?, ?)',
+      [subCode, subName, rollNo, imageUrl, ExamDate, type]
+    );
+
     res.status(200).json({ message: 'Image uploaded successfully', url: imageUrl });
   } catch (error) {
     console.error('Upload error:', error);
     res.status(500).json({ error: 'Image upload failed' });
   }
 });
-
-
-
-
 
 // no change 
 
