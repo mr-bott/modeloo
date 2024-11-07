@@ -589,23 +589,43 @@ app.get("/branch",async (req, res) => {
 //---------Subjects Table-----------
 // To get images by search
 
-app.get("/search/:details",async(req,res)=>{
-  try{
-    const{details}=req.params
-     const pattern=`%${details}%`;
-    const [rows]=await pool.query(`select * from subject where sub_code like ? or sub_name like ?`, [pattern,pattern])
-      if(rows.length>0){
-          res.status(200).json({details:rows})
-      }
-      else{
-        res.status(400).json({error:"No Data in Our DataBase "})
-      }
-  }
-  catch(err){
+// app.get("/search/:details",async(req,res)=>{
+//   try{
+//     const{details}=req.params
+//      const pattern=`%${details}%`;
+//     const [rows]=await pool.query(`select * from subject where sub_code like ? or sub_name like ?`, [pattern,pattern])
+//       if(rows.length>0){
+//           res.status(200).json({details:rows})
+//       }
+//       else{
+//         res.status(400).json({error:"No Data in Our DataBase "})
+//       }
+//   }
+//   catch(err){
+//     console.log(err.message);
+//     res.status(500).json({error:"Internal SErver error"});
+//   }
+// })
+
+app.get("/search/:details", async (req, res) => {
+  try {
+    const { details } = req.params;
+    const pattern = `%${details}%`;
+    const [rows] = await pool.query(
+      `SELECT * FROM subject WHERE sub_code LIKE ? OR sub_name LIKE ? GROUP BY sub_code`,
+      [pattern, pattern]
+    );
+
+    if (rows.length > 0) {
+      res.status(200).json({ details: rows });
+    } else {
+      res.status(400).json({ error: "No Data in Our Database" });
+    }
+  } catch (err) {
     console.log(err.message);
-    res.status(500).json({error:"Internal SErver error"});
+    res.status(500).json({ error: "Internal Server Error" });
   }
-})
+});
 
 app.get("/get_paper/:sub_code", async (req, res) => {
   try {
