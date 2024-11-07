@@ -303,7 +303,6 @@ app.get('/logout', (req, res) => {
 
 // Multer setup for file uploads
 const storage = multer.diskStorage({
-  destination: 'uploads/', // Temporary storage
   filename: (req, file, cb) => {
     const uniqueName = `${Date.now()}-${file.originalname}`;
     cb(null, uniqueName);
