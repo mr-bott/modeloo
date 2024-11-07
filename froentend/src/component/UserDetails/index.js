@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+
 import "./userdetails.css";
 import Loader from "../Loader"
 
+import React, { createContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
+
+
 const UserDetails = ({ gmaildata }) => {
+  
+  const jwt = Cookies.get('jwt');
+  const decoded = jwt ? jwtDecode(jwt) : null;
+  const gmail = decoded?.email;
+
   const [formData, setFormData] = useState({
     branch: '',
     name: '',
@@ -11,7 +21,7 @@ const UserDetails = ({ gmaildata }) => {
     year: '',
     regulation: ''
   });
-
+ 
   const [isloading,setIsloading]=useState(false)
 
   const branches = ["CSE", "CSM", "CSD", "CSC", "CSA", "ECE", "EEE", "MECH"];
@@ -40,6 +50,7 @@ const UserDetails = ({ gmaildata }) => {
     e.preventDefault();
 
     try {
+     
       setIsloading(true)
       const url = process.env.REACT_APP_BACKEND_URL;
       console.log(formData);
@@ -49,7 +60,7 @@ const UserDetails = ({ gmaildata }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ formData, gmail: gmaildata.details[0].gmail }),
+        body: JSON.stringify({ formData, gmail:gmail }),
       });
 
       if (!response.ok) {

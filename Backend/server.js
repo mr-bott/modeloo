@@ -436,22 +436,22 @@ app.post("/signup", async (req, res) => {
 })
 
 app.put("/update_details", async (req, res) => {
-
   try {
-    const {formData,gmail}=req.body
-    const { name, branch, year, sem, rollno,regulation } = formData
-    const [rows] = await pool.query(
-      `UPDATE users SET name = ?, branch = ?, year = ?, sem = ?, rollno = ? regulation=? WHERE gmail = ?`,
-      [name, branch, year, sem, rollno,regulation, gmail]
-    )
-    res.status(201).json({ error: "Successfully Updated" })
-  }
-  catch (err) {
-    
-    res.status(500).json({ error: err.message })
-  }
+    const { formData, gmail } = req.body;
+    console.log(formData);
+    const { name, branch, year, sem, rollno, regulation } = formData;
 
-})
+    const [rows] = await pool.query(
+      `UPDATE users SET name = ?, branch = ?, year = ?, sem = ?, rollno = ?, regulation = ? WHERE gmail = ?`,
+      [name, branch, year, sem, rollno, regulation, gmail]
+    );
+
+    res.status(201).json({ message: "Successfully Updated", details: rows });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 app.post("/login", async (req, res) => {
   try {
@@ -517,6 +517,18 @@ app.post("/forgot_password", async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 
+})
+
+
+app.get("/users", async (req, res) => {
+  console.log("fuck1")
+  try {
+     console.log("fuck")
+    const [rows] = await pool.query('SELECT * FROM users ');
+    res.json({ details: rows });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 })
 
 //to get all details about a user
