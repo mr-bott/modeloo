@@ -38,11 +38,11 @@
 }
 .header_para{
     font-size: 17px;
-    font-family: "Poppins", Arial, sans-serif;
-    font-weight: 500;
     line-height: 22px;
     color: black;
     text-decoration: none;
+    font-family: "poppins";
+    font-weight: 500;
 }
 
 .search-input {
@@ -69,7 +69,6 @@
   padding: 4px;
 }
 
-/* Menu Items for Desktop */
 .menu-items {
   display: flex;
   gap: 24px;
@@ -82,15 +81,13 @@
   font-size: 18px;
 }
 
-/* Menu Toggle Button (Mobile) */
+
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
 }
-
-/* Mobile Styles */
 @media (max-width: 768px) {
   .header-container {
     justify-content: space-around;
@@ -99,7 +96,7 @@
   }
   .menu-items {
     position: absolute;
-    top: 60px; /* Adjust if necessary */
+    top: 60px; 
     left: 0;
     width: 100%;
     background-color: #fff;
@@ -121,7 +118,7 @@
     font-size: 20px;
   }
 
-  /* Center Search Bar in Mobile Header */
+
   .search-bar-mobile {
     display: flex;
     margin-right: auto;
@@ -130,7 +127,7 @@
   }
 }
 
-/* Adding margin to elements below the header to prevent overlap */
+
 body {
-  margin-top: 80px; /* Ensure this margin is greater than or equal to header height */
+  margin-top: 80px; 
 }

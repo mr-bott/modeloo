@@ -42,12 +42,16 @@
     margin: 0 0 5px 0; 
     font-size: 20px; 
     color: #333;
+    font-family: "poppins";
+    font-weight: 500;
 }
 
 .unique-grid-paragraph {
     margin: 0;
     color: #666;
     line-height: 1.4; 
+    font-family: "poppins";
+    font-weight: 400;
 }
 
 /* Responsive adjustments */

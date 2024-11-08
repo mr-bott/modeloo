@@ -28,7 +28,7 @@ const BranchSubjects = () => {
     const fetchSubjects = async (regulation, year, branch) => {
         try {
             setLoading(true);
-            const url=process.env.REACT_APP_BACKEND_URL
+            const url = process.env.REACT_APP_BACKEND_URL
             const response = await fetch(`${url}/branch?regulation=${regulation}&year=${year}&branch=${branch}`, {
                 method: "GET",
                 headers: {
@@ -69,16 +69,16 @@ const BranchSubjects = () => {
     return (
         <>
             <div className="unique-grid-container">
-            {loading && <div className="loader_container">
-        <Loader/>
-        {/* <p>wait until upload complete...</p> */}
-      </div>
-        
-        }
-                
-                    {gridItems.length > 0 ? (
-                        <ul className="unique-grid-list">
-                       { gridItems.map((item) => (
+                {loading && <div className="loader_container">
+                    <Loader />
+                    {/* <p>wait until upload complete...</p> */}
+                </div>
+
+                }
+
+                {gridItems.length > 0 ? (
+                    <ul className="unique-grid-list">
+                        {gridItems.map((item) => (
                             <li
                                 key={item.id}
                                 className="unique-grid-item"
@@ -94,13 +94,13 @@ const BranchSubjects = () => {
                                 <p className="unique-grid-paragraph">{item.code}</p>
                             </li>
                         ))}
-                        </ul>
-                    ) : (
-                        <div className="">
+                    </ul>
+                ) : (
+                    <div className="">
                         <NoData />
-                        </div>
-                    )}
-             
+                    </div>
+                )}
+
             </div>
             <Footer />
         </>

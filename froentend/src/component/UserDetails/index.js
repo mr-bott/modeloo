@@ -53,8 +53,6 @@ const UserDetails = ({ gmaildata }) => {
      
       setIsloading(true)
       const url = process.env.REACT_APP_BACKEND_URL;
-      console.log(formData);
-
       const response = await fetch(`${url}/update_details`, {
         method: 'PUT',
         headers: {

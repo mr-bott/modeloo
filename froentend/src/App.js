@@ -15,6 +15,7 @@ import Cookies from 'js-cookie';
 import UserProvider from './context/UserContext';
 import BigImage from "./component/BigImage"
 import LoginButton from './component/LoginButton';
+import UploadNotification from './component/UploadNotification';
 
 const App = () => (
   <UserProvider>
@@ -40,6 +41,7 @@ const MainContent = () => {
         <Route path="/allimages" element={<ProtectedRoute element={<AllImages />} />} />
         <Route path="/profile" element={<ProtectedRoute element={<UserProfile />} />} />
         <Route path="/uploadpaper" element={<ProtectedRoute element={<UploadForm />} />} />
+        <Route path="/uploadnotification" element={<ProtectedRoute element={<UploadNotification />} />} />
         <Route path="/subjects" element={<ProtectedRoute element={<Subjects />} />} />
         <Route path="/footer" element={<ProtectedRoute element={<Footer />} />} />
         <Route path="/branchsubjects" element={<ProtectedRoute element={<BranchSubjects />} />} />

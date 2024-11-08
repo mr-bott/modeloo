@@ -4,7 +4,8 @@
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    background-color:#E6E6FA;
+    /* background-color:#E6E6FA; */
+    background-color:white;
     height:60vh;
     padding: 0px;
     margin: 0px;
@@ -16,13 +17,14 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-   margin-bottom:1rem;
+    margin-bottom:1rem;
   }
   
   .branch-upload-form h2 {
     text-align: center;
     color: #333;
     margin-bottom: 30px;
+   
   }
   
   .branch-form-group {
@@ -33,7 +35,8 @@
     display: block;
     margin-bottom:1rem;
     color:black;
-    font-weight:bld;
+    font-family: "poppins";
+    font-weight: 600;
   }
   
   .branch-form-group select,
@@ -84,6 +87,15 @@
   .branch-submit-btn:active {
     transform: translateY(1px);
   }
+  .quote_search{
+    font-size: 1.8rem;
+    color: black;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    text-align: center;
+    font-family: "poppins";
+    font-weight: 600;
+  }
   
   /* Error states */
   .branch-form-group select:invalid,
@@ -96,6 +108,7 @@
     .branch-form-container {
       padding: 10px;
       width: 100vw;
+      /* margin-left:0.5rem; */
     }
   
     .branch-upload-form {

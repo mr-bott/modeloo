@@ -1,7 +1,7 @@
 /* AllImages Section */
 .all-images-section {
     margin-top: 4.5rem;
-    background-color: #d5c6e0;
+    background-color: #d5e0ff;
     min-height:70vh;
 
 }
@@ -14,14 +14,16 @@
     color:black;
     margin-bottom: 20px;
     line-height: 1.4;
-    font-weight: bold;
     text-align: center;
+    font-family: "poppins";
+    font-weight: 600;
 }
 
 .section-subtitle {
     font-size: 1.5rem;
     color:black;
-    font-weight: bold;
+    font-family: "poppins";
+    font-weight: 600;
    
 }
 
@@ -29,25 +31,28 @@
     padding: 10px;
     width: 100%;
     cursor: pointer;
+   
 }
 
 .image-card-img {
     margin: 0.5rem;
-    width:90%;
-    height: auto;
+    height:400px;
     display: block;
 }
 
 .image-card-title {
     text-align: center;
     font-size: 1rem;
+    font-family: "poppins";
+    font-weight: 500;
 }
 
 .project-category-title {
     text-align: center;
     font-size: 1.5rem;
      margin-top: .2rem; 
-    font-weight: bold;
+    font-family: "poppins";
+    font-weight: 600;
 }
 
 /* Custom Carousel Arrows */
@@ -99,9 +104,24 @@
     background-color: #000;
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width: 768px) {
     .all-images-section{
         padding:1.4rem;
         width: 100vw;
     }
-}
+    .image-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center; 
+    }
+    .image-card-img {
+        margin: 0 auto; 
+        display: block;
+        height: 400px; 
+      }
+    
+  }
+  
+    
+

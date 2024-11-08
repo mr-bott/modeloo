@@ -1,14 +1,8 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-}
 
 .home-container {
     display: flex;
     min-height: 80vh;
     padding: 20px;
- 
     background-color: #f3ffe3;
 }
 
@@ -26,6 +20,7 @@ body {
     margin-bottom: 20px;
     line-height: 1.4;
     font-weight: bold;
+    font-family: "poppins";
 }
 .quotes_container{
     display: flex;
@@ -88,6 +83,7 @@ body {
 
 @media (max-width: 768px) {
     .home-container {
+        display: none;
         flex-direction: column;
         width: 100vw;
         margin-top: 3rem;

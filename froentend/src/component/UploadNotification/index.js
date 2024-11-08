@@ -1,23 +1,18 @@
 
-
 import React, { useState, useContext, useEffect } from 'react';
-import './uploadform.css';
 import Loader from '../Loader';
 import { UserContext } from '../../context/UserContext';
 
-const UploadForm = () => {
+const UploadNotification = () => {
   const userData = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     type: '',
     rollNo: userData?.details[0]?.rollno || '',
-    subCode: '',
-    subName: '',
     image: null,
     ExamDate: '',
     regulation:"",
     year:"",
-    branch:""
 
   });
 
@@ -34,10 +29,10 @@ const UploadForm = () => {
     }
   }, [userData]);
 
-  const typeOptions = ["MID-1", "MID-2", "SEM"];
+  const typeOptions = ["FEE-NOTIFICATION", "EXAM-NOTIFICATION","Other"];
   const yearOptions = [1,2,3,4];
-  const regulationOptions=["r20","r23"]
-  const branchOptions=["CSE", "CSM", "CSD", "CSC", "CSA", "ECE", "EEE", "MECH"]
+  const regulationOptions=["r17","r20","r23"]
+//   const branchOptions=["CSE", "CSM", "CSD", "CSC", "CSA", "ECE", "EEE", "MECH"]
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,7 +64,7 @@ const UploadForm = () => {
     try {
       console.log(formData);
       const url = process.env.REACT_APP_BACKEND_URL;
-      const response = await fetch(`${url}/uploadimage`, {
+      const response = await fetch(`${url}/uploadnotifications`, {
         method: 'POST',
         body: data,
       });
@@ -161,59 +156,14 @@ const UploadForm = () => {
 
         </div>
 
-        <div className="table_details">
-        <div className="form-group table">
-          <label htmlFor="ExamDate">Exam Date on Paper:</label>
+        <div className="form-group">
+          <label htmlFor="ExamDate">Posting Date:</label>
           <input
             type="date"
             id="examdate"
             name="ExamDate"
             value={formData.ExamDate}
             onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className=" form-group table">
-          <label htmlFor="branch">Branch:</label>
-          <select 
-            id="branch"
-            name="branch"
-            value={formData.branch}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Type</option>
-            {branchOptions.map(option => (
-              <option key={option} value={option}>{option}</option>
-            ))}
-          </select>
-        </div>
-
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="subcode">Subject Code:</label>
-          <input
-            type="text"
-            id="subcode"
-            name="subCode"
-            value={formData.subCode}
-            onChange={handleChange}
-            placeholder="Enter subject code"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="subName">Subject Name:</label>
-          <input
-            type="text"
-            id="subName"
-            name="subName"
-            value={formData.subName}
-            onChange={handleChange}
-            placeholder="Enter subject name"
             required
           />
         </div>
@@ -236,4 +186,4 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+export default UploadNotification;

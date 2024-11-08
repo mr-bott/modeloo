@@ -38,8 +38,12 @@ const handleSearch=()=>{
       </div>
 
       <div className={`menu-items ${isMenuOpen ? 'open' : ''}`}>
+        
       <Link to="/uploadpaper">
         <a href="#uploadpaper" className='header_para'>Upload Image</a>
+        </Link>
+        <Link to="/uploadnotification">
+        <a href="#uploadpaper" className='header_para'>Upload Notifiction</a>
         </Link>
         <a href="#contactus" className='header_para'>Contact Us</a>
         <Link to="/profile">

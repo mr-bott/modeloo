@@ -84,9 +84,6 @@ const AllImages = () => {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
-     console.log("mid1",mid1Images)
-     console.log("mid2",mid2Images)
-     console.log("sem",semImages)
     const renderSlider = (title, images) => (
         <>
             <h2 className="project-category-title">{title}</h2>

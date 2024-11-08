@@ -4,6 +4,7 @@ import Footer from '../Footer';
 import BranchSearch from '../BranchSearch';
 import UserDetails from "../UserDetails";
 import { UserContext } from '../../context/UserContext';
+import Notifications from '../Notifications';
 import "./home.css"
 
 const Home = () => {
@@ -13,9 +14,11 @@ const Home = () => {
   const hasRollNo = isUserDataAvailable && userData.details[0].rollno;
 
   return (
-    <div>
+    <div >
       {hasRollNo ? (
         <>
+        <div className="home_section">
+          
         <div className="home-container">
             <div className="quote-section">
                 <div className="quote">
@@ -32,18 +35,21 @@ const Home = () => {
                 </div>
             </div>
         </div>
+
+          <Notifications/>
           <Subjects data={userData.details[0]}/>
           <BranchSearch />
        
-            <div className="quotes_container">
+            {/* <div className="quotes_container">
              
                 <div className=" quote">
                     "A shared snap can open doors; it’s a simple way to guide a thousand journeys."
                 </div>
                 
             </div>
-           
+            */}
           <Footer />
+          </div>
         </>
       ) : (
         <UserDetails gmaildata={userData} />

@@ -34,7 +34,7 @@ const BranchSearch = () => {
 
   return (
     <div className="branch-form-container">
-      <h2 className='quote'>Search via branch </h2>
+      <h2 className='quote_search'>Search via branch </h2>
       <form className="branch-upload-form" onSubmit={handleSubmit}>
         <div className="branch-upload-row">
           <div className="branch-form-group">
