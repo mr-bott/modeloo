@@ -18,7 +18,7 @@ const BigImage = () => {
     <div className="portraitImageCard-container">
       <div className="portraitImageCard-content">
         <div className='potrait_row'>
-          <h1 className="portraitImageCard-title">{project.sub_name}</h1>
+          <h1 className="portraitImageCard-title">{project.sub_name||project.regulation}</h1>
           <p className="portraitImageCard-description">
             {project.sub_code}
           </p>
@@ -26,7 +26,7 @@ const BigImage = () => {
          
         </div>
         <div className='potrait_row'>
-        <h1 className="portraitImageCard-title">{formatExamDate(project.Exam_date)}</h1>
+        <h1 className="portraitImageCard-title">{formatExamDate(project.Exam_date|| project.posting_date)}</h1>
         <p className="portraitImageCard-description">
             {project.Type}
           </p>

@@ -88,7 +88,12 @@
     }
     .notifications-section-title {
         font-size: 1.8rem;
-        
+        color: black;
+        margin-bottom: 20px;
+        line-height: 1.4;
+        text-align: center;
+        font-family: "poppins";
+        font-weight: 600;
         
     }
 }

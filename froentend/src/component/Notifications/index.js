@@ -79,10 +79,10 @@ const Notifications = () => {
         <>
             {images.length > 0 ? (
                 <Slider {...settings}>
-                    {images.map((notification) => (
-                        <div key={notification.id} className="notifications-image-card" onClick={() => navigate('/bigimage', { state: { notification } })}>
-                            <h3 className="notifications-image-card-title">{formatDate(notification.posting_date)}</h3>
-                            <img src={notification.img} alt={notification.regulation} className="notifications-image-card-img" />
+                    {images.map((project) => (
+                        <div key={project.id} className="notifications-image-card" onClick={() => navigate('/bigimage', { state: { project } })}>
+                            <h3 className="notifications-image-card-title">{formatDate(project.posting_date)}</h3>
+                            <img src={project.img} alt={project.regulation} className="notifications-image-card-img" />
                         </div>
                     ))}
                 </Slider>
