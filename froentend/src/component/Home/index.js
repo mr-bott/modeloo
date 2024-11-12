@@ -22,7 +22,7 @@ const Home = () => {
         <div className="home-container">
             <div className="quote-section">
                 <div className="quote">
-                    "Just as PUBG teaches you the best loot spots and survival tactics, model papers reveal the hotspots of exam success, helping you aim for every question with accuracy and purpose "
+                    "Model papers reveal the hotspots of exam success, helping you aim for every question with accuracy and purpose "
                 </div>
                 {/* <div className="author">- John Dewey</div> */}
             </div>

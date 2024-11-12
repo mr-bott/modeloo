@@ -3,6 +3,7 @@ import "./userdetails.css";
 import Loader from "../Loader"
 
 import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
@@ -12,6 +13,7 @@ const UserDetails = ({ gmaildata }) => {
   const jwt = Cookies.get('jwt');
   const decoded = jwt ? jwtDecode(jwt) : null;
   const gmail = decoded?.email;
+  const navigate=useNavigate();
 
   const [formData, setFormData] = useState({
     branch: '',
@@ -79,7 +81,9 @@ const UserDetails = ({ gmaildata }) => {
         regulation: ''
       });
       setIsloading(false)
+      navigate("/home")
       alert("Details updated");
+
     } catch (error) {
       setIsloading(false)
       console.error('Error submitting form:', error);
