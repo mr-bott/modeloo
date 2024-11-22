@@ -3,7 +3,7 @@
 
 **Model Paper ** is a comprehensive platform designed to simplify the management of institutional model papers. It enables students and institutions to upload, store, and access model papers conveniently through a seamless and user-friendly interface.  
 
-**Link**: https://modeloo.vecel.app
+**Link**: https://modeloo.vercel.app/
 ---
 
 ## 🚀 Features  
